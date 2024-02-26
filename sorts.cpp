@@ -5,6 +5,24 @@
 
 using namespace std;
 
+int64_t bubble_sort(vector<int> data)
+{
+    auto start = chrono::high_resolution_clock::now();
+    for (int i = 0; i < data.size(); i++)
+    {
+        for (int j = 0; j < data.size() - i - 1; j++)
+        {
+            if (data[j] < data[i])
+            {
+                swap(data[i], data[j]);
+            }
+        }
+    }
+    auto stop = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+    return duration.count();
+}
+
 int64_t selection_sort(vector<int> data)
 {
     auto start = chrono::high_resolution_clock::now();
@@ -51,6 +69,8 @@ int main(int argc, char **argv)
     {
         seq_data.push_back(nr);
     }
+    time = bubble_sort(seq_data);
+    cout << "Bubble sort: " << time << "\n";
     time = selection_sort(seq_data);
     cout << "Selection sort: " << time << "\n";
 
@@ -69,6 +89,8 @@ int main(int argc, char **argv)
     {
         rand_data.push_back(nr);
     }
+    time = bubble_sort(rand_data);
+    cout << "Bubble sort: " << time << "\n";
     time = selection_sort(rand_data);
     cout << "Selection sort: " << time << "\n";
 
@@ -87,6 +109,8 @@ int main(int argc, char **argv)
     {
         rev_seq_data.push_back(nr);
     }
+    time = bubble_sort(rev_seq_data);
+    cout << "Bubble sort: " << time << "\n";
     time = selection_sort(rev_seq_data);
     cout << "Selection sort: " << time << "\n";
 
