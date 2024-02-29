@@ -34,7 +34,7 @@ with open(f"./data/{length}_random.txt", "w") as file:
     file.writelines(lines) 
 
 # write reverse sequential dataset
-with open(f"./data/{length}_reverse_sequential.txt", "w") as file:
+with open(f"./data/{length}_inverse_sequential.txt", "w") as file:
     lines = []
     for i in range(int(length)):
         lines.append(str(int(length)-i) + "\n")
