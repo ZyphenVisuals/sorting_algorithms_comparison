@@ -30,7 +30,7 @@ with open(f"./data/{length}_sequential.txt", "w") as file:
 with open(f"./data/{length}_random.txt", "w") as file:
     lines = []
     for i in range(int(length)):
-        lines.append(str(random.randint(0, 100000000)) + "\n")
+        lines.append(str(random.randint(0, 2147483647)) + "\n")
     file.writelines(lines) 
 
 # write reverse sequential dataset

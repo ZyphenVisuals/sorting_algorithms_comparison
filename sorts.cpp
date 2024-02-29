@@ -5,40 +5,53 @@
 
 using namespace std;
 
-int64_t bubble_sort(vector<int> data)
+void bubble_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t &time)
 {
+    swaps = 0;
+    comparisons = 0;
     auto start = chrono::high_resolution_clock::now();
     for (int i = 0; i < data.size(); i++)
     {
         for (int j = 0; j < data.size() - i - 1; j++)
         {
-            if (data[j] < data[i])
+            comparisons++;
+            if (data[j] > data[j + 1])
             {
-                swap(data[i], data[j]);
+                swaps++;
+                swap(data[j + 1], data[j]);
             }
         }
     }
     auto stop = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
-    return duration.count();
+    time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    return;
 }
 
-int64_t selection_sort(vector<int> data)
+void selection_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t &time)
 {
+    swaps = 0;
+    comparisons = 0;
     auto start = chrono::high_resolution_clock::now();
     for (int i = 0; i < data.size() - 1; i++)
     {
-        for (int j = i; j < data.size(); j++)
+        int min = i;
+        for (int j = i + 1; j < data.size(); j++)
         {
-            if (data[j] < data[i])
+            comparisons++;
+            if (data[j] < data[min])
             {
-                swap(data[i], data[j]);
+                min = j;
             }
+        }
+        if (min != i)
+        {
+            swap(data[i], data[min]);
+            swaps++;
         }
     }
     auto stop = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
-    return duration.count();
+    time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    return;
 }
 
 int main(int argc, char **argv)
@@ -51,7 +64,7 @@ int main(int argc, char **argv)
     }
     int length = atoi(argv[1]); // read length argument
 
-    int64_t time;
+    int64_t c, s, t;
     int nr;
 
     // sequential tests
@@ -69,10 +82,10 @@ int main(int argc, char **argv)
     {
         seq_data.push_back(nr);
     }
-    time = bubble_sort(seq_data);
-    cout << "Bubble sort: " << time << "\n";
-    time = selection_sort(seq_data);
-    cout << "Selection sort: " << time << "\n";
+    bubble_sort(seq_data, c, s, t);
+    cout << "Bubble sort: " << c << " comparissons, " << s << " swaps, " << t << " microseconds\n";
+    selection_sort(seq_data, c, s, t);
+    cout << "Selection sort: " << c << " comparissons, " << s << " swaps, " << t << " microseconds\n";
 
     // random tests
     cout << "\n---Random tests---\n";
@@ -89,10 +102,10 @@ int main(int argc, char **argv)
     {
         rand_data.push_back(nr);
     }
-    time = bubble_sort(rand_data);
-    cout << "Bubble sort: " << time << "\n";
-    time = selection_sort(rand_data);
-    cout << "Selection sort: " << time << "\n";
+    bubble_sort(rand_data, c, s, t);
+    cout << "Bubble sort: " << c << " comparissons, " << s << " swaps, " << t << " microseconds\n";
+    selection_sort(rand_data, c, s, t);
+    cout << "Selection sort: " << c << " comparissons, " << s << " swaps, " << t << " microseconds\n";
 
     // reverse sequential tests
     cout << "\n---Reverse sequential tests---\n";
@@ -109,10 +122,10 @@ int main(int argc, char **argv)
     {
         rev_seq_data.push_back(nr);
     }
-    time = bubble_sort(rev_seq_data);
-    cout << "Bubble sort: " << time << "\n";
-    time = selection_sort(rev_seq_data);
-    cout << "Selection sort: " << time << "\n";
+    bubble_sort(rev_seq_data, c, s, t);
+    cout << "Bubble sort: " << c << " comparissons, " << s << " swaps, " << t << " microseconds\n";
+    selection_sort(rev_seq_data, c, s, t);
+    cout << "Selection sort: " << c << " comparissons, " << s << " swaps, " << t << " microseconds\n";
 
     return 0;
 }
