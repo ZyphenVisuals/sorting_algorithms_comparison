@@ -94,15 +94,6 @@ void selection_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int6
 
 int main(int argc, char **argv)
 {
-    int nr;
-    // check the correct amount of arguments
-    if (argc != 2)
-    {
-        cout << "Command takes exactly one parameter (length).";
-        return -1;
-    }
-    int length = atoi(argv[1]); // read length argument
-
     // write header
     fout << "Type,Length,Name,Comparisons,Swaps,Time\n";
 
