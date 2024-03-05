@@ -10,13 +10,14 @@ ofstream fout("results.csv");
 
 int step = 0;
 const char *test_types[] = {"sequential", "random", "inverse_sequential"};
-const int lengths[] = {1000, 10000};
+const int lengths[] = {7, 10, 100, 1000, 10000};
+const int nr_algos = 4;
 
 void increment_process()
 {
     step++;
     cout.flush();
-    cout << format("{}/{}\r", step, size(test_types) * size(lengths) * 2);
+    cout << format("{}/{}\r", step, size(test_types) * size(lengths) * nr_algos);
     return;
 }
 
@@ -40,7 +41,7 @@ vector<int> get_data(const char *type, int length)
 
 void write_data(const char *type, int length, char *name, int64_t comparisons, int64_t swaps, int64_t time)
 {
-    fout << format("{},{},{},{},{},{}\n", name, to_string(length), name, to_string(comparisons), to_string(swaps), to_string(time));
+    fout << format("{},{},{},{},{},{}\n", type, to_string(length), name, to_string(comparisons), to_string(swaps), to_string(time));
 }
 
 void bubble_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t &time)
@@ -59,6 +60,33 @@ void bubble_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t
                 swap(data[j + 1], data[j]);
             }
         }
+    }
+    auto stop = chrono::high_resolution_clock::now();
+    time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    return;
+}
+
+void bubble_sort_optimised(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t &time)
+{
+    swaps = 0;
+    comparisons = 0;
+    bool sorted;
+    auto start = chrono::high_resolution_clock::now();
+    for (int i = 0; i < data.size(); i++)
+    {
+        sorted = true;
+        for (int j = 0; j < data.size() - i - 1; j++)
+        {
+            comparisons++;
+            if (data[j] > data[j + 1])
+            {
+                sorted = false;
+                swaps++;
+                swap(data[j + 1], data[j]);
+            }
+        }
+        if (sorted)
+            break;
     }
     auto stop = chrono::high_resolution_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
@@ -92,6 +120,36 @@ void selection_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int6
     return;
 }
 
+void insertion_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t &time)
+{
+    swaps = 0;
+    comparisons = 0;
+    int aux, j;
+    auto start = chrono::high_resolution_clock::now();
+    for (int i = 1; i <= data.size(); i++)
+    {
+        aux = data[i];
+        j = i - 1;
+        comparisons++;
+        while (j >= 0 && data[j] > aux)
+        {
+            comparisons++;
+            // TODO: these ain't swaps
+            swaps++;
+            data[j + 1] = data[j];
+            j--;
+        }
+        if (aux != data[i])
+        {
+            swaps++;
+            data[j + 1] = aux;
+        }
+    }
+    auto stop = chrono::high_resolution_clock::now();
+    time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    return;
+}
+
 int main(int argc, char **argv)
 {
     // write header
@@ -117,8 +175,22 @@ int main(int argc, char **argv)
             comp = 0;
             swap = 0;
             time = 0;
+            bubble_sort_optimised(data, comp, swap, time);
+            write_data(test_types[t], lengths[l], "Bubble Sort (Optimised)", comp, swap, time);
+
+            increment_process();
+            comp = 0;
+            swap = 0;
+            time = 0;
             selection_sort(data, comp, swap, time);
             write_data(test_types[t], lengths[l], "Selection Sort", comp, swap, time);
+
+            increment_process();
+            comp = 0;
+            swap = 0;
+            time = 0;
+            insertion_sort(data, comp, swap, time);
+            write_data(test_types[t], lengths[l], "Insertion Sort", comp, swap, time);
         }
     }
 
