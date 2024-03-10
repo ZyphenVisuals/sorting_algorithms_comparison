@@ -11,7 +11,7 @@ ofstream fout("results.csv");
 int step = 0;
 const char *test_types[] = {"sequential", "random_small", "random_big", "inverse_sequential"};
 const int lengths[] = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000};
-const int nr_algos = 7;
+const int nr_algos = 9;
 
 void print_array(vector<int> &data)
 {
@@ -348,6 +348,90 @@ void quick_sort_optimised_wrapper(vector<int> data, int64_t &comparisons, int64_
     return;
 }
 
+void counting_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t &time)
+{
+    swaps = -1;
+    comparisons = -1;
+    auto start = chrono::high_resolution_clock::now();
+
+    // find maximum number
+    int max = data[0];
+    for (int i = 0; i < data.size(); i++)
+    {
+        if (data[i] > max)
+            max = data[i];
+    }
+
+    // initialize frequency array
+    vector<int> freq(max + 1, 0);
+
+    // count elements
+    for (int i = 0; i < data.size(); i++)
+    {
+        freq[data[i]]++;
+    }
+
+    // write elements back in order
+    int index = 0;
+    for (int i = 0; i <= max; i++)
+    {
+        while (freq[i] != 0)
+        {
+            data[index] = i;
+            index++;
+            freq[i]--;
+        }
+    }
+
+    auto stop = chrono::high_resolution_clock::now();
+    time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    check(data, "Counting sort");
+    return;
+}
+
+void counting_sort_stable(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t &time)
+{
+    swaps = -1;
+    comparisons = -1;
+    auto start = chrono::high_resolution_clock::now();
+
+    // find maximum number
+    int max = data[0];
+    for (int i = 0; i < data.size(); i++)
+    {
+        if (data[i] > max)
+            max = data[i];
+    }
+
+    // initialize frequency array
+    vector<int> freq(max + 1, 0);
+
+    // count elements
+    for (int i = 0; i < data.size(); i++)
+    {
+        freq[data[i]]++;
+    }
+
+    // compute cummulative counts
+    for (int i = 1; i <= max; i++)
+    {
+        freq[i] += freq[i - 1];
+    }
+
+    // write elements to sorted output
+    vector<int> sorted(data.size());
+    for (int i = data.size() - 1; i >= 0; i--)
+    {
+        sorted[freq[data[i]] - 1] = data[i];
+        freq[data[i]]--;
+    }
+
+    auto stop = chrono::high_resolution_clock::now();
+    time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    // check(sorted, "Counting sort stable");
+    return;
+}
+
 int main(int argc, char **argv)
 {
     // write header
@@ -389,6 +473,14 @@ int main(int argc, char **argv)
             increment_process();
             quick_sort_optimised_wrapper(data, comp, swap, time);
             write_data(test_types[t], lengths[l], "Quick Sort (Median of three)", comp, swap, time);
+
+            increment_process();
+            counting_sort(data, comp, swap, time);
+            write_data(test_types[t], lengths[l], "Counting Sort", comp, swap, time);
+
+            increment_process();
+            counting_sort_stable(data, comp, swap, time);
+            write_data(test_types[t], lengths[l], "Counting Sort (Stable)", comp, swap, time);
         }
     }
 
