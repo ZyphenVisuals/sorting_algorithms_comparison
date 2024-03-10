@@ -71,7 +71,7 @@ void bubble_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t
 {
     swaps = 0;
     comparisons = 0;
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     for (int i = 0; i < data.size(); i++)
     {
         for (int j = 0; j < data.size() - i - 1; j++)
@@ -84,7 +84,7 @@ void bubble_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t
             }
         }
     }
-    auto stop = chrono::high_resolution_clock::now();
+    auto stop = chrono::steady_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
     check(data, "Bubble sort");
     return;
@@ -95,7 +95,7 @@ void bubble_sort_optimised(vector<int> data, int64_t &comparisons, int64_t &swap
     swaps = 0;
     comparisons = 0;
     bool sorted;
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     for (int i = 0; i < data.size(); i++)
     {
         sorted = true;
@@ -112,7 +112,7 @@ void bubble_sort_optimised(vector<int> data, int64_t &comparisons, int64_t &swap
         if (sorted)
             break;
     }
-    auto stop = chrono::high_resolution_clock::now();
+    auto stop = chrono::steady_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
     check(data, "Bubble sort (Optimised)");
     return;
@@ -122,7 +122,7 @@ void selection_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int6
 {
     swaps = 0;
     comparisons = 0;
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     for (int i = 0; i < data.size() - 1; i++)
     {
         int min = i;
@@ -140,7 +140,7 @@ void selection_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int6
             swaps++;
         }
     }
-    auto stop = chrono::high_resolution_clock::now();
+    auto stop = chrono::steady_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
     check(data, "Selection sort");
     return;
@@ -151,7 +151,7 @@ void insertion_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int6
     swaps = 0;
     comparisons = 0;
     int aux, j;
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     for (int i = 1; i < data.size(); i++)
     {
         aux = data[i];
@@ -168,7 +168,7 @@ void insertion_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int6
         swaps++;
         data[j + 1] = aux;
     }
-    auto stop = chrono::high_resolution_clock::now();
+    auto stop = chrono::steady_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
     check(data, "Insertion sort");
     return;
@@ -246,11 +246,11 @@ void merge_sort_wrapper(vector<int> data, int64_t &comparisons, int64_t &swaps, 
 {
     swaps = 0;
     comparisons = 0;
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     int begin = 0;
     int end = data.size() - 1;
     merge_sort(data, comparisons, swaps, begin, end);
-    auto stop = chrono::high_resolution_clock::now();
+    auto stop = chrono::steady_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
     check(data, "Merge sort");
     return;
@@ -286,11 +286,11 @@ void quick_sort_wrapper(vector<int> data, int64_t &comparisons, int64_t &swaps, 
 {
     swaps = 0;
     comparisons = 0;
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     int begin = 0;
     int end = data.size() - 1;
     quick_sort(data, comparisons, swaps, begin, end);
-    auto stop = chrono::high_resolution_clock::now();
+    auto stop = chrono::steady_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
     check(data, "Quick sort");
     return;
@@ -338,11 +338,11 @@ void quick_sort_optimised_wrapper(vector<int> data, int64_t &comparisons, int64_
 {
     swaps = 0;
     comparisons = 0;
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     int begin = 0;
     int end = data.size() - 1;
     quick_sort_optimised(data, comparisons, swaps, begin, end);
-    auto stop = chrono::high_resolution_clock::now();
+    auto stop = chrono::steady_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
     check(data, "Quick sort");
     return;
@@ -352,7 +352,7 @@ void counting_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64
 {
     swaps = -1;
     comparisons = -1;
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
 
     // find maximum number
     int max = data[0];
@@ -383,7 +383,7 @@ void counting_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64
         }
     }
 
-    auto stop = chrono::high_resolution_clock::now();
+    auto stop = chrono::steady_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
     check(data, "Counting sort");
     return;
@@ -393,7 +393,7 @@ void counting_sort_stable(vector<int> data, int64_t &comparisons, int64_t &swaps
 {
     swaps = -1;
     comparisons = -1;
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
 
     // find maximum number
     int max = data[0];
@@ -426,7 +426,7 @@ void counting_sort_stable(vector<int> data, int64_t &comparisons, int64_t &swaps
         freq[data[i]]--;
     }
 
-    auto stop = chrono::high_resolution_clock::now();
+    auto stop = chrono::steady_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
     // check(sorted, "Counting sort stable");
     return;
