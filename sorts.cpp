@@ -10,8 +10,7 @@ ofstream fout("results.csv");
 
 int step = 0;
 const char *test_types[] = {"sequential", "random", "inverse_sequential"};
-const int lengths[] = {10, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000};
-// const int lengths[] = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100};
+const int lengths[] = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000};
 const int nr_algos = 5;
 
 void increment_process()
@@ -20,6 +19,18 @@ void increment_process()
     // cout.flush();
     cout << format("{}/{}\r", step, size(test_types) * size(lengths) * nr_algos);
     return;
+}
+
+void check(vector<int> &data, char *type)
+{
+    for (int i = 1; i < data.size(); i++)
+    {
+        if (data[i] < data[i - 1])
+        {
+            cout << "Error detected at algorithm " << type << "\n";
+            exit(-1);
+        }
+    }
 }
 
 vector<int> get_data(const char *type, int length)
@@ -64,7 +75,7 @@ void bubble_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t
     }
     auto stop = chrono::high_resolution_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
-
+    check(data, "Bubble sort");
     return;
 }
 
@@ -92,6 +103,7 @@ void bubble_sort_optimised(vector<int> data, int64_t &comparisons, int64_t &swap
     }
     auto stop = chrono::high_resolution_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    check(data, "Bubble sort (Optimised)");
     return;
 }
 
@@ -119,6 +131,7 @@ void selection_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int6
     }
     auto stop = chrono::high_resolution_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    check(data, "Selection sort");
     return;
 }
 
@@ -146,6 +159,7 @@ void insertion_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int6
     }
     auto stop = chrono::high_resolution_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    check(data, "Insertion sort");
     return;
 }
 
@@ -227,6 +241,7 @@ void merge_sort_wrapper(vector<int> data, int64_t &comparisons, int64_t &swaps, 
     merge_sort(data, comparisons, swaps, begin, end);
     auto stop = chrono::high_resolution_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    check(data, "Merge sort");
     return;
 }
 
