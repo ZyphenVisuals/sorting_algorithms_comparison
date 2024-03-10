@@ -11,13 +11,24 @@ ofstream fout("results.csv");
 int step = 0;
 const char *test_types[] = {"sequential", "random_small", "random_big", "inverse_sequential"};
 const int lengths[] = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000};
-const int nr_algos = 5;
+const int nr_algos = 7;
+
+void print_array(vector<int> &data)
+{
+    cout << "\n";
+    for (int i = 0; i < data.size(); i++)
+    {
+        cout << data[i] << " ";
+    }
+    cout << "\n";
+    return;
+}
 
 void increment_process()
 {
     step++;
     // cout.flush();
-    cout << format("{}/{}\r", step, size(test_types) * size(lengths) * nr_algos);
+    cout << format("\r{}/{}", step, size(test_types) * size(lengths) * nr_algos);
     return;
 }
 
@@ -27,7 +38,7 @@ void check(vector<int> &data, char *type)
     {
         if (data[i] < data[i - 1])
         {
-            cout << "Error detected at algorithm " << type << "\n";
+            cout << "\nError detected at algorithm " << type << "\n";
             exit(-1);
         }
     }
@@ -245,6 +256,98 @@ void merge_sort_wrapper(vector<int> data, int64_t &comparisons, int64_t &swaps, 
     return;
 }
 
+void quick_sort(vector<int> &data, int64_t &comparisons, int64_t &swaps, int start, int end)
+{
+    if (end <= start)
+        return;
+    int pivot = end; // using final element as pivot
+    // place pivot in the correct spot
+    int i = start - 1;
+    for (int j = start; j < end; j++)
+    {
+        comparisons++;
+        if (data[j] < data[pivot])
+        {
+            i++;
+            swaps++;
+            swap(data[i], data[j]);
+        }
+    }
+    i++;
+    swaps++;
+    swap(data[i], data[pivot]);
+    // recursively sort the left and right arrays
+    quick_sort(data, comparisons, swaps, start, i - 1);
+    quick_sort(data, comparisons, swaps, i + 1, end);
+    return;
+}
+
+void quick_sort_wrapper(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t &time)
+{
+    swaps = 0;
+    comparisons = 0;
+    auto start = chrono::high_resolution_clock::now();
+    int begin = 0;
+    int end = data.size() - 1;
+    quick_sort(data, comparisons, swaps, begin, end);
+    auto stop = chrono::high_resolution_clock::now();
+    time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    check(data, "Quick sort");
+    return;
+}
+
+void quick_sort_optimised(vector<int> &data, int64_t &comparisons, int64_t &swaps, int start, int end)
+{
+    if (end <= start)
+        return;
+    // median of three
+    int mid = (start + end) / 2;
+    if ((data[mid] > data[start]) ^ (data[mid] > data[end]))
+    {
+        swaps++;
+        swap(data[mid], data[end]);
+    }
+    else if ((data[start] > data[mid]) ^ (data[start] > data[end]))
+    {
+        swaps++;
+        swap(data[start], data[end]);
+    }
+    int pivot = end; // using final element as pivot
+    // place pivot in the correct spot
+    int i = start - 1;
+    for (int j = start; j < end; j++)
+    {
+        comparisons++;
+        if (data[j] < data[pivot])
+        {
+            i++;
+            swaps++;
+            swap(data[i], data[j]);
+        }
+    }
+    i++;
+    swaps++;
+    swap(data[i], data[pivot]);
+    // recursively sort the left and right arrays
+    quick_sort_optimised(data, comparisons, swaps, start, i - 1);
+    quick_sort_optimised(data, comparisons, swaps, i + 1, end);
+    return;
+}
+
+void quick_sort_optimised_wrapper(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t &time)
+{
+    swaps = 0;
+    comparisons = 0;
+    auto start = chrono::high_resolution_clock::now();
+    int begin = 0;
+    int end = data.size() - 1;
+    quick_sort_optimised(data, comparisons, swaps, begin, end);
+    auto stop = chrono::high_resolution_clock::now();
+    time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    check(data, "Quick sort");
+    return;
+}
+
 int main(int argc, char **argv)
 {
     // write header
@@ -278,6 +381,14 @@ int main(int argc, char **argv)
             increment_process();
             merge_sort_wrapper(data, comp, swap, time);
             write_data(test_types[t], lengths[l], "Merge Sort", comp, swap, time);
+
+            increment_process();
+            quick_sort_wrapper(data, comp, swap, time);
+            write_data(test_types[t], lengths[l], "Quick Sort", comp, swap, time);
+
+            increment_process();
+            quick_sort_optimised_wrapper(data, comp, swap, time);
+            write_data(test_types[t], lengths[l], "Quick Sort (Optimised)", comp, swap, time);
         }
     }
 
