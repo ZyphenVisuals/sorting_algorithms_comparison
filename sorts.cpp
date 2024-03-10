@@ -368,7 +368,7 @@ int main(int argc, char **argv)
 
             increment_process();
             bubble_sort_optimised(data, comp, swap, time);
-            write_data(test_types[t], lengths[l], "Bubble Sort (Optimised)", comp, swap, time);
+            write_data(test_types[t], lengths[l], "Bubble Sort (Fast exit)", comp, swap, time);
 
             increment_process();
             selection_sort(data, comp, swap, time);
@@ -388,7 +388,7 @@ int main(int argc, char **argv)
 
             increment_process();
             quick_sort_optimised_wrapper(data, comp, swap, time);
-            write_data(test_types[t], lengths[l], "Quick Sort (Optimised)", comp, swap, time);
+            write_data(test_types[t], lengths[l], "Quick Sort (Median of three)", comp, swap, time);
         }
     }
 
