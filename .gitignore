@@ -1,5 +1,6 @@
 .vscode
 data
 sorts
-results.csv
+results*
 *.exe
+.idea

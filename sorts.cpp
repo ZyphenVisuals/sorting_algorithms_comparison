@@ -10,13 +10,14 @@ ofstream fout("results.csv");
 
 int step = 0;
 const char *test_types[] = {"sequential", "random", "inverse_sequential"};
-const int lengths[] = {7, 10, 100, 1000, 10000};
+const int lengths[] = {10, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000};
+// const int lengths[] = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100};
 const int nr_algos = 4;
 
 void increment_process()
 {
     step++;
-    cout.flush();
+    // cout.flush();
     cout << format("{}/{}\r", step, size(test_types) * size(lengths) * nr_algos);
     return;
 }
@@ -63,6 +64,7 @@ void bubble_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t
     }
     auto stop = chrono::high_resolution_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+
     return;
 }
 
@@ -126,7 +128,7 @@ void insertion_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int6
     comparisons = 0;
     int aux, j;
     auto start = chrono::high_resolution_clock::now();
-    for (int i = 1; i <= data.size(); i++)
+    for (int i = 1; i < data.size(); i++)
     {
         aux = data[i];
         j = i - 1;
@@ -139,11 +141,8 @@ void insertion_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int6
             data[j + 1] = data[j];
             j--;
         }
-        if (aux != data[i])
-        {
-            swaps++;
-            data[j + 1] = aux;
-        }
+        swaps++;
+        data[j + 1] = aux;
     }
     auto stop = chrono::high_resolution_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
