@@ -26,11 +26,18 @@ with open(f"./data/{length}_sequential.txt", "w") as file:
         lines.append(str(i) + "\n")
     file.writelines(lines)
 
-# write random dataset
-with open(f"./data/{length}_random.txt", "w") as file:
+# write random small dataset
+with open(f"./data/{length}_random_small.txt", "w") as file:
     lines = []
     for i in range(int(length)):
-        lines.append(str(random.randint(0, 2147483647)) + "\n")
+        lines.append(str(random.randint(0, 100)) + "\n")
+    file.writelines(lines) 
+
+# write random big dataset
+with open(f"./data/{length}_random_big.txt", "w") as file:
+    lines = []
+    for i in range(int(length)):
+        lines.append(str(random.randint(0, 100000)) + "\n")
     file.writelines(lines) 
 
 # write reverse sequential dataset

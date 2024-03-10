@@ -9,7 +9,7 @@ using namespace std;
 ofstream fout("results.csv");
 
 int step = 0;
-const char *test_types[] = {"sequential", "random", "inverse_sequential"};
+const char *test_types[] = {"sequential", "random_small", "random_big", "inverse_sequential"};
 const int lengths[] = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000};
 const int nr_algos = 5;
 
