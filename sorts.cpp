@@ -12,7 +12,7 @@ int step = 0;
 const char *test_types[] = {"sequential", "random", "inverse_sequential"};
 const int lengths[] = {10, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000};
 // const int lengths[] = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100};
-const int nr_algos = 4;
+const int nr_algos = 5;
 
 void increment_process()
 {
@@ -149,6 +149,87 @@ void insertion_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int6
     return;
 }
 
+void merge(vector<int> &data, int64_t &comparisons, int64_t &swaps, int start, int mid, int end)
+{
+    vector<int> vl(mid - start + 1);
+    vector<int> vr(end - mid);
+
+    // populatng vectors
+    for (int i = 0; i < vl.size(); i++)
+    {
+        swaps++;
+        vl[i] = data[start + i];
+    }
+    for (int i = 0; i < vr.size(); i++)
+    {
+        swaps++;
+        vr[i] = data[mid + i + 1];
+    }
+
+    // merge the vectors back into the data vector
+    int li = 0, ri = 0, i = start;
+    while (li < vl.size() && ri < vr.size())
+    {
+        comparisons++;
+        if (vl[li] <= vr[ri])
+        {
+            swaps++;
+            data[i] = vl[li];
+            li++;
+        }
+        else
+        {
+            swaps++;
+            data[i] = vr[ri];
+            ri++;
+        }
+        i++;
+    }
+
+    // finish consuming temporary vectors
+    for (int x = li; x < vl.size(); x++)
+    {
+        swaps++;
+        data[i] = vl[x];
+        i++;
+    }
+    for (int x = ri; x < vr.size(); x++)
+    {
+        swaps++;
+        data[i] = vr[x];
+        i++;
+    }
+
+    return;
+}
+
+void merge_sort(vector<int> &data, int64_t &comparisons, int64_t &swaps, int start, int end)
+{
+    // base case
+    comparisons++;
+    if (start >= end)
+        return;
+
+    int mid = (start + end) / 2;
+
+    merge_sort(data, comparisons, swaps, start, mid);
+    merge_sort(data, comparisons, swaps, mid + 1, end);
+    merge(data, comparisons, swaps, start, mid, end);
+}
+
+void merge_sort_wrapper(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t &time)
+{
+    swaps = 0;
+    comparisons = 0;
+    auto start = chrono::high_resolution_clock::now();
+    int begin = 0;
+    int end = data.size() - 1;
+    merge_sort(data, comparisons, swaps, begin, end);
+    auto stop = chrono::high_resolution_clock::now();
+    time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    return;
+}
+
 int main(int argc, char **argv)
 {
     // write header
@@ -164,32 +245,24 @@ int main(int argc, char **argv)
             vector<int> data = get_data(test_types[t], lengths[l]);
 
             increment_process();
-            comp = 0;
-            swap = 0;
-            time = 0;
             bubble_sort(data, comp, swap, time);
             write_data(test_types[t], lengths[l], "Bubble Sort", comp, swap, time);
 
             increment_process();
-            comp = 0;
-            swap = 0;
-            time = 0;
             bubble_sort_optimised(data, comp, swap, time);
             write_data(test_types[t], lengths[l], "Bubble Sort (Optimised)", comp, swap, time);
 
             increment_process();
-            comp = 0;
-            swap = 0;
-            time = 0;
             selection_sort(data, comp, swap, time);
             write_data(test_types[t], lengths[l], "Selection Sort", comp, swap, time);
 
             increment_process();
-            comp = 0;
-            swap = 0;
-            time = 0;
             insertion_sort(data, comp, swap, time);
             write_data(test_types[t], lengths[l], "Insertion Sort", comp, swap, time);
+
+            increment_process();
+            merge_sort_wrapper(data, comp, swap, time);
+            write_data(test_types[t], lengths[l], "Merge Sort", comp, swap, time);
         }
     }
 
