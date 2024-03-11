@@ -11,7 +11,7 @@ ofstream fout("results.csv");
 int step = 0;
 const char *test_types[] = {"sequential", "random_small", "random_big", "inverse_sequential"};
 const int lengths[] = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000};
-const int nr_algos = 9;
+const int nr_algos = 10;
 
 void print_array(vector<int> &data)
 {
@@ -32,13 +32,13 @@ void increment_process()
     return;
 }
 
-void check(vector<int> &data, char *type)
+void check(vector<int> &data, char *algo)
 {
     for (int i = 1; i < data.size(); i++)
     {
         if (data[i] < data[i - 1])
         {
-            cout << "\nError detected at algorithm " << type << "\n";
+            cout << "\nError detected at algorithm " << algo << "\n";
             exit(-1);
         }
     }
@@ -428,7 +428,54 @@ void counting_sort_stable(vector<int> data, int64_t &comparisons, int64_t &swaps
 
     auto stop = chrono::steady_clock::now();
     time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
-    // check(sorted, "Counting sort stable");
+    check(sorted, "Counting sort stable");
+    return;
+}
+
+void radix_sort(vector<int> data, int64_t &comparisons, int64_t &swaps, int64_t &time)
+{
+    swaps = -1;
+    comparisons = -1;
+    auto start = chrono::steady_clock::now();
+
+    vector<int> sorted(data.size()); // output for counting sort
+    // find maximum element
+    int max = data[0];
+    for (int i = 1; i < data.size(); i++)
+    {
+        if (data[i] > max)
+            max = data[i];
+    }
+    // for every digit
+    int digit = 1;
+    while (max / digit > 0)
+    {
+        // counting sort with max 9 (base-10)
+        vector<int> freq(10, 0);
+        for (int i = 0; i < data.size(); i++)
+        {
+            freq[(data[i] / digit) % 10]++;
+        }
+        for (int i = 1; i < 10; i++)
+        {
+            freq[i] += freq[i - 1];
+        }
+        for (int i = data.size() - 1; i >= 0; i--)
+        {
+            sorted[freq[(data[i] / digit) % 10] - 1] = data[i];
+            freq[(data[i] / digit) % 10]--;
+        }
+        // move the result back into the original array
+        for (int i = 0; i < data.size(); i++)
+        {
+            data[i] = sorted[i];
+        }
+        digit *= 10;
+    }
+
+    auto stop = chrono::steady_clock::now();
+    time = chrono::duration_cast<chrono::microseconds>(stop - start).count();
+    check(data, "Radix sort");
     return;
 }
 
@@ -481,6 +528,10 @@ int main(int argc, char **argv)
             increment_process();
             counting_sort_stable(data, comp, swap, time);
             write_data(test_types[t], lengths[l], "Counting Sort (Stable)", comp, swap, time);
+
+            increment_process();
+            radix_sort(data, comp, swap, time);
+            write_data(test_types[t], lengths[l], "Radix Sort", comp, swap, time);
         }
     }
 
