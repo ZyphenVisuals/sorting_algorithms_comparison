@@ -1,30 +1,31 @@
-inverse_sequential,5,Quick Sort (Median of three),6,8,0
-inverse_sequential,10,Quick Sort (Median of three),19,18,0
-inverse_sequential,15,Quick Sort (Median of three),38,34,0
-inverse_sequential,20,Quick Sort (Median of three),60,53,0
-inverse_sequential,25,Quick Sort (Median of three),87,68,1
-inverse_sequential,30,Quick Sort (Median of three),113,88,1
-inverse_sequential,35,Quick Sort (Median of three),148,116,1
-inverse_sequential,40,Quick Sort (Median of three),178,141,1
-inverse_sequential,45,Quick Sort (Median of three),216,167,2
-inverse_sequential,50,Quick Sort (Median of three),251,186,2
-inverse_sequential,55,Quick Sort (Median of three),293,213,2
-inverse_sequential,60,Quick Sort (Median of three),326,245,4
-inverse_sequential,65,Quick Sort (Median of three),370,267,4
-inverse_sequential,70,Quick Sort (Median of three),413,300,3
-inverse_sequential,75,Quick Sort (Median of three),462,336,4
-inverse_sequential,80,Quick Sort (Median of three),494,357,4
-inverse_sequential,85,Quick Sort (Median of three),548,397,4
-inverse_sequential,90,Quick Sort (Median of three),595,432,4
-inverse_sequential,95,Quick Sort (Median of three),649,464,5
-inverse_sequential,100,Quick Sort (Median of three),686,485,5
-inverse_sequential,1000,Quick Sort (Median of three),14378,9321,91
-inverse_sequential,2000,Quick Sort (Median of three),33670,21605,263
-inverse_sequential,3000,Quick Sort (Median of three),54682,35145,341
-inverse_sequential,4000,Quick Sort (Median of three),77062,49021,491
-inverse_sequential,5000,Quick Sort (Median of three),100346,64009,623
-inverse_sequential,6000,Quick Sort (Median of three),124614,79525,769
-inverse_sequential,7000,Quick Sort (Median of three),149066,94713,915
-inverse_sequential,8000,Quick Sort (Median of three),173990,109997,1065
-inverse_sequential,9000,Quick Sort (Median of three),199770,126457,1257
-inverse_sequential,10000,Quick Sort (Median of three),225614,143229,1380
+Length,Comparisons,Swaps,Time
+5,6,8,0
+10,19,18,0
+15,38,34,0
+20,60,53,0
+25,87,68,1
+30,113,88,1
+35,148,116,1
+40,178,141,1
+45,216,167,2
+50,251,186,2
+55,293,213,2
+60,326,245,4
+65,370,267,4
+70,413,300,3
+75,462,336,4
+80,494,357,4
+85,548,397,4
+90,595,432,4
+95,649,464,5
+100,686,485,5
+1000,14378,9321,91
+2000,33670,21605,263
+3000,54682,35145,341
+4000,77062,49021,491
+5000,100346,64009,623
+6000,124614,79525,769
+7000,149066,94713,915
+8000,173990,109997,1065
+9000,199770,126457,1257
+10000,225614,143229,1380

@@ -30,7 +30,13 @@ for type in test_types:
             r = csv.reader(in_file)
             for row in r:
                 if row[0] == type and row[2] == algo:
-                    lines.append(row)
+                    line = []
+                    line.append(row[1])
+                    line.append(row[3])
+                    line.append(row[4])
+                    line.append(row[5])
+                    lines.append(line)
         with open(f"results/{algorithms[algo]}_{type}.csv", "w+") as out_file:
             w = csv.writer(out_file)
+            w.writerow(["Length", "Comparisons", "Swaps", "Time"])
             w.writerows(lines)

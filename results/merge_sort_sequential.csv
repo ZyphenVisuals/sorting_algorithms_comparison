@@ -1,30 +1,31 @@
-sequential,5,Merge Sort,16,24,2
-sequential,10,Merge Sort,38,68,2
-sequential,15,Merge Sort,60,118,3
-sequential,20,Merge Sort,87,176,4
-sequential,25,Merge Sort,113,236,6
-sequential,30,Merge Sort,136,296,7
-sequential,35,Merge Sort,165,362,8
-sequential,40,Merge Sort,195,432,9
-sequential,45,Merge Sort,225,502,11
-sequential,50,Merge Sort,252,572,12
-sequential,55,Merge Sort,279,642,13
-sequential,60,Merge Sort,303,712,14
-sequential,65,Merge Sort,328,784,16
-sequential,70,Merge Sort,366,864,17
-sequential,75,Merge Sort,401,944,59
-sequential,80,Merge Sort,431,1024,19
-sequential,85,Merge Sort,466,1104,21
-sequential,90,Merge Sort,496,1184,21
-sequential,95,Merge Sort,523,1264,22
-sequential,100,Merge Sort,555,1344,24
-sequential,1000,Merge Sort,7043,19952,360
-sequential,2000,Merge Sort,15087,43904,564
-sequential,3000,Merge Sort,24075,69808,863
-sequential,4000,Merge Sort,32175,95808,1338
-sequential,5000,Merge Sort,42003,123616,1656
-sequential,6000,Merge Sort,51151,151616,1759
-sequential,7000,Merge Sort,60179,179616,2059
-sequential,8000,Merge Sort,68351,207616,2359
-sequential,9000,Merge Sort,78795,237232,2724
-sequential,10000,Merge Sort,89007,267232,3186
+Length,Comparisons,Swaps,Time
+5,16,24,2
+10,38,68,2
+15,60,118,3
+20,87,176,4
+25,113,236,6
+30,136,296,7
+35,165,362,8
+40,195,432,9
+45,225,502,11
+50,252,572,12
+55,279,642,13
+60,303,712,14
+65,328,784,16
+70,366,864,17
+75,401,944,59
+80,431,1024,19
+85,466,1104,21
+90,496,1184,21
+95,523,1264,22
+100,555,1344,24
+1000,7043,19952,360
+2000,15087,43904,564
+3000,24075,69808,863
+4000,32175,95808,1338
+5000,42003,123616,1656
+6000,51151,151616,1759
+7000,60179,179616,2059
+8000,68351,207616,2359
+9000,78795,237232,2724
+10000,89007,267232,3186

@@ -1,30 +1,31 @@
-random_big,5,Merge Sort,17,24,1
-random_big,10,Merge Sort,43,68,2
-random_big,15,Merge Sort,71,118,4
-random_big,20,Merge Sort,104,176,6
-random_big,25,Merge Sort,137,236,6
-random_big,30,Merge Sort,175,296,8
-random_big,35,Merge Sort,207,362,9
-random_big,40,Merge Sort,245,432,10
-random_big,45,Merge Sort,276,502,12
-random_big,50,Merge Sort,322,572,17
-random_big,55,Merge Sort,362,642,15
-random_big,60,Merge Sort,399,712,17
-random_big,65,Merge Sort,445,784,18
-random_big,70,Merge Sort,472,864,19
-random_big,75,Merge Sort,526,944,21
-random_big,80,Merge Sort,561,1024,23
-random_big,85,Merge Sort,608,1104,24
-random_big,90,Merge Sort,648,1184,26
-random_big,95,Merge Sort,704,1264,26
-random_big,100,Merge Sort,732,1344,35
-random_big,1000,Merge Sort,10700,19952,339
-random_big,2000,Merge Sort,23407,43904,701
-random_big,3000,Merge Sort,36989,69808,1048
-random_big,4000,Merge Sort,50866,95808,1406
-random_big,5000,Merge Sort,65215,123616,1823
-random_big,6000,Merge Sort,79785,151616,2461
-random_big,7000,Merge Sort,94640,179616,2795
-random_big,8000,Merge Sort,109626,207616,2920
-random_big,9000,Merge Sort,124918,237232,3334
-random_big,10000,Merge Sort,140410,267232,3905
+Length,Comparisons,Swaps,Time
+5,17,24,1
+10,43,68,2
+15,71,118,4
+20,104,176,6
+25,137,236,6
+30,175,296,8
+35,207,362,9
+40,245,432,10
+45,276,502,12
+50,322,572,17
+55,362,642,15
+60,399,712,17
+65,445,784,18
+70,472,864,19
+75,526,944,21
+80,561,1024,23
+85,608,1104,24
+90,648,1184,26
+95,704,1264,26
+100,732,1344,35
+1000,10700,19952,339
+2000,23407,43904,701
+3000,36989,69808,1048
+4000,50866,95808,1406
+5000,65215,123616,1823
+6000,79785,151616,2461
+7000,94640,179616,2795
+8000,109626,207616,2920
+9000,124918,237232,3334
+10000,140410,267232,3905

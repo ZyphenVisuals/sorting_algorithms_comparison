@@ -1,30 +1,31 @@
-random_big,5,Counting Sort,-1,-1,272
-random_big,10,Counting Sort,-1,-1,284
-random_big,15,Counting Sort,-1,-1,175
-random_big,20,Counting Sort,-1,-1,179
-random_big,25,Counting Sort,-1,-1,302
-random_big,30,Counting Sort,-1,-1,271
-random_big,35,Counting Sort,-1,-1,207
-random_big,40,Counting Sort,-1,-1,223
-random_big,45,Counting Sort,-1,-1,286
-random_big,50,Counting Sort,-1,-1,198
-random_big,55,Counting Sort,-1,-1,198
-random_big,60,Counting Sort,-1,-1,342
-random_big,65,Counting Sort,-1,-1,289
-random_big,70,Counting Sort,-1,-1,198
-random_big,75,Counting Sort,-1,-1,265
-random_big,80,Counting Sort,-1,-1,298
-random_big,85,Counting Sort,-1,-1,201
-random_big,90,Counting Sort,-1,-1,194
-random_big,95,Counting Sort,-1,-1,282
-random_big,100,Counting Sort,-1,-1,200
-random_big,1000,Counting Sort,-1,-1,340
-random_big,2000,Counting Sort,-1,-1,331
-random_big,3000,Counting Sort,-1,-1,357
-random_big,4000,Counting Sort,-1,-1,414
-random_big,5000,Counting Sort,-1,-1,503
-random_big,6000,Counting Sort,-1,-1,411
-random_big,7000,Counting Sort,-1,-1,434
-random_big,8000,Counting Sort,-1,-1,453
-random_big,9000,Counting Sort,-1,-1,465
-random_big,10000,Counting Sort,-1,-1,486
+Length,Comparisons,Swaps,Time
+5,-1,-1,272
+10,-1,-1,284
+15,-1,-1,175
+20,-1,-1,179
+25,-1,-1,302
+30,-1,-1,271
+35,-1,-1,207
+40,-1,-1,223
+45,-1,-1,286
+50,-1,-1,198
+55,-1,-1,198
+60,-1,-1,342
+65,-1,-1,289
+70,-1,-1,198
+75,-1,-1,265
+80,-1,-1,298
+85,-1,-1,201
+90,-1,-1,194
+95,-1,-1,282
+100,-1,-1,200
+1000,-1,-1,340
+2000,-1,-1,331
+3000,-1,-1,357
+4000,-1,-1,414
+5000,-1,-1,503
+6000,-1,-1,411
+7000,-1,-1,434
+8000,-1,-1,453
+9000,-1,-1,465
+10000,-1,-1,486

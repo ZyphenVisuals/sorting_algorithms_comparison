@@ -1,30 +1,31 @@
-inverse_sequential,5,Merge Sort,14,24,1
-inverse_sequential,10,Merge Sort,34,68,3
-inverse_sequential,15,Merge Sort,57,118,3
-inverse_sequential,20,Merge Sort,79,176,5
-inverse_sequential,25,Merge Sort,103,236,6
-inverse_sequential,30,Merge Sort,130,296,7
-inverse_sequential,35,Merge Sort,154,362,8
-inverse_sequential,40,Merge Sort,179,432,9
-inverse_sequential,45,Merge Sort,204,502,11
-inverse_sequential,50,Merge Sort,232,572,12
-inverse_sequential,55,Merge Sort,260,642,13
-inverse_sequential,60,Merge Sort,291,712,14
-inverse_sequential,65,Merge Sort,322,784,20
-inverse_sequential,70,Merge Sort,344,864,17
-inverse_sequential,75,Merge Sort,369,944,18
-inverse_sequential,80,Merge Sort,399,1024,18
-inverse_sequential,85,Merge Sort,424,1104,21
-inverse_sequential,90,Merge Sort,454,1184,22
-inverse_sequential,95,Merge Sort,487,1264,22
-inverse_sequential,100,Merge Sort,515,1344,24
-inverse_sequential,1000,Merge Sort,6931,19952,273
-inverse_sequential,2000,Merge Sort,14863,43904,857
-inverse_sequential,3000,Merge Sort,22827,69808,851
-inverse_sequential,4000,Merge Sort,31727,95808,1380
-inverse_sequential,5000,Merge Sort,39803,123616,1455
-inverse_sequential,6000,Merge Sort,48655,151616,1791
-inverse_sequential,7000,Merge Sort,57627,179616,2069
-inverse_sequential,8000,Merge Sort,67455,207616,2376
-inverse_sequential,9000,Merge Sort,75819,237232,2982
-inverse_sequential,10000,Merge Sort,84607,267232,3075
+Length,Comparisons,Swaps,Time
+5,14,24,1
+10,34,68,3
+15,57,118,3
+20,79,176,5
+25,103,236,6
+30,130,296,7
+35,154,362,8
+40,179,432,9
+45,204,502,11
+50,232,572,12
+55,260,642,13
+60,291,712,14
+65,322,784,20
+70,344,864,17
+75,369,944,18
+80,399,1024,18
+85,424,1104,21
+90,454,1184,22
+95,487,1264,22
+100,515,1344,24
+1000,6931,19952,273
+2000,14863,43904,857
+3000,22827,69808,851
+4000,31727,95808,1380
+5000,39803,123616,1455
+6000,48655,151616,1791
+7000,57627,179616,2069
+8000,67455,207616,2376
+9000,75819,237232,2982
+10000,84607,267232,3075

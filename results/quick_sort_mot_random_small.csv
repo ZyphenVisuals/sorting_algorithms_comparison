@@ -1,30 +1,31 @@
-random_small,5,Quick Sort (Median of three),6,8,0
-random_small,10,Quick Sort (Median of three),19,19,0
-random_small,15,Quick Sort (Median of three),38,32,0
-random_small,20,Quick Sort (Median of three),55,46,1
-random_small,25,Quick Sort (Median of three),81,62,1
-random_small,30,Quick Sort (Median of three),111,69,2
-random_small,35,Quick Sort (Median of three),137,93,2
-random_small,40,Quick Sort (Median of three),162,131,2
-random_small,45,Quick Sort (Median of three),184,141,2
-random_small,50,Quick Sort (Median of three),224,180,3
-random_small,55,Quick Sort (Median of three),268,212,3
-random_small,60,Quick Sort (Median of three),283,215,3
-random_small,65,Quick Sort (Median of three),306,216,4
-random_small,70,Quick Sort (Median of three),328,209,4
-random_small,75,Quick Sort (Median of three),375,256,4
-random_small,80,Quick Sort (Median of three),417,242,4
-random_small,85,Quick Sort (Median of three),436,248,5
-random_small,90,Quick Sort (Median of three),465,294,5
-random_small,95,Quick Sort (Median of three),521,332,6
-random_small,100,Quick Sort (Median of three),537,318,6
-random_small,1000,Quick Sort (Median of three),12075,4806,96
-random_small,2000,Quick Sort (Median of three),33771,9563,254
-random_small,3000,Quick Sort (Median of three),65120,13757,479
-random_small,4000,Quick Sort (Median of three),110464,16817,576
-random_small,5000,Quick Sort (Median of three),160470,22850,845
-random_small,6000,Quick Sort (Median of three),220994,25618,1089
-random_small,7000,Quick Sort (Median of three),297292,33549,1430
-random_small,8000,Quick Sort (Median of three),371518,38123,1779
-random_small,9000,Quick Sort (Median of three),462184,38966,2084
-random_small,10000,Quick Sort (Median of three),561704,48463,2636
+Length,Comparisons,Swaps,Time
+5,6,8,0
+10,19,19,0
+15,38,32,0
+20,55,46,1
+25,81,62,1
+30,111,69,2
+35,137,93,2
+40,162,131,2
+45,184,141,2
+50,224,180,3
+55,268,212,3
+60,283,215,3
+65,306,216,4
+70,328,209,4
+75,375,256,4
+80,417,242,4
+85,436,248,5
+90,465,294,5
+95,521,332,6
+100,537,318,6
+1000,12075,4806,96
+2000,33771,9563,254
+3000,65120,13757,479
+4000,110464,16817,576
+5000,160470,22850,845
+6000,220994,25618,1089
+7000,297292,33549,1430
+8000,371518,38123,1779
+9000,462184,38966,2084
+10000,561704,48463,2636

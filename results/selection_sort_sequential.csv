@@ -1,30 +1,31 @@
-sequential,5,Selection Sort,10,0,0
-sequential,10,Selection Sort,45,0,0
-sequential,15,Selection Sort,105,0,0
-sequential,20,Selection Sort,190,0,1
-sequential,25,Selection Sort,300,0,1
-sequential,30,Selection Sort,435,0,2
-sequential,35,Selection Sort,595,0,3
-sequential,40,Selection Sort,780,0,3
-sequential,45,Selection Sort,990,0,4
-sequential,50,Selection Sort,1225,0,5
-sequential,55,Selection Sort,1485,0,6
-sequential,60,Selection Sort,1770,0,8
-sequential,65,Selection Sort,2080,0,9
-sequential,70,Selection Sort,2415,0,10
-sequential,75,Selection Sort,2775,0,12
-sequential,80,Selection Sort,3160,0,13
-sequential,85,Selection Sort,3570,0,15
-sequential,90,Selection Sort,4005,0,17
-sequential,95,Selection Sort,4465,0,19
-sequential,100,Selection Sort,4950,0,21
-sequential,1000,Selection Sort,499500,0,2153
-sequential,2000,Selection Sort,1999000,0,8654
-sequential,3000,Selection Sort,4498500,0,20325
-sequential,4000,Selection Sort,7998000,0,33924
-sequential,5000,Selection Sort,12497500,0,52985
-sequential,6000,Selection Sort,17997000,0,77093
-sequential,7000,Selection Sort,24496500,0,104567
-sequential,8000,Selection Sort,31996000,0,134431
-sequential,9000,Selection Sort,40495500,0,172461
-sequential,10000,Selection Sort,49995000,0,213187
+Length,Comparisons,Swaps,Time
+5,10,0,0
+10,45,0,0
+15,105,0,0
+20,190,0,1
+25,300,0,1
+30,435,0,2
+35,595,0,3
+40,780,0,3
+45,990,0,4
+50,1225,0,5
+55,1485,0,6
+60,1770,0,8
+65,2080,0,9
+70,2415,0,10
+75,2775,0,12
+80,3160,0,13
+85,3570,0,15
+90,4005,0,17
+95,4465,0,19
+100,4950,0,21
+1000,499500,0,2153
+2000,1999000,0,8654
+3000,4498500,0,20325
+4000,7998000,0,33924
+5000,12497500,0,52985
+6000,17997000,0,77093
+7000,24496500,0,104567
+8000,31996000,0,134431
+9000,40495500,0,172461
+10000,49995000,0,213187
